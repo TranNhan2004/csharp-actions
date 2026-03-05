@@ -1,0 +1,101 @@
+{
+  "name": "csharp-actions",
+  "displayName": "CSharp Actions",
+  "description": "Some actions to create class, enum, .etc with correct new namespace format in C# easier.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.109.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "submenus": [
+      {
+        "id": "csharp_actions",
+        "label": "C# Actions"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "submenu": "csharp_actions",
+          "when": "explorerResourceIsFolder",
+          "group": "navigation"
+        }
+      ],
+      "csharp_actions": [
+        {
+          "command": "cs-actions.createClass",
+          "group": "1_create@1"
+        },
+        {
+          "command": "cs-actions.createInterface",
+          "group": "1_create@2"
+        },
+        {
+          "command": "cs-actions.createRecord",
+          "group": "1_create@3"
+        },
+        {
+          "command": "cs-actions.createStruct",
+          "group": "1_create@4"
+        },
+        {
+          "command": "cs-actions.createEnum",
+          "group": "1_create@5"
+        },
+        {
+          "command": "cs-actions.adjustNamespace",
+          "group": "2_modify"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "cs-actions.createClass",
+        "title": "Create Class"
+      },
+      {
+        "command": "cs-actions.createInterface",
+        "title": "Create Interface"
+      },
+      {
+        "command": "cs-actions.createRecord",
+        "title": "Create Record"
+      },
+      {
+        "command": "cs-actions.createStruct",
+        "title": "Create Struct"
+      },
+      {
+        "command": "cs-actions.createEnum",
+        "title": "Create Enum"
+      },
+      {
+        "command": "cs-actions.adjustNamespace",
+        "title": "Adjust Namespaces"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.109.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "typescript-eslint": "^8.56.1",
+    "eslint": "^9.39.3",
+    "typescript": "^5.9.3",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
