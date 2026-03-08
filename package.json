@@ -15,6 +15,7 @@
     "Programming Languages",
     "Other"
   ],
+  "icon": "icon.png",
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
@@ -55,7 +56,7 @@
         },
         {
           "command": "cs-actions.adjustNamespace",
-          "group": "2_modify"
+          "group": "2_modify@1"
         }
       ]
     },
