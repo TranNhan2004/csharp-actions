@@ -27,7 +27,7 @@ Refactor your project structure without the headache of manual string replacemen
 ## Requirements
 
 - Works best with **.NET 6.0+** (for file-scoped namespace support).
-- Requires a `.csproj` file to calculate namespaces and a `.sln` file for global refactoring.
+- Requires a `.csproj` file to calculate namespaces and a `.sln` or `.slnx` file for global refactoring.
 
 ## Installation
 
