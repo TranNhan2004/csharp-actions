@@ -4,14 +4,16 @@ import * as vscode from "vscode";
 import { getNamespace } from "./shared/get-namespace";
 
 /**
- * Find the nearest file based on folder hierarchy (SLN or CSPROJ)
+ * Find the nearest file based on folder hierarchy (solution or project files)
  */
-function findNearestFile(startPath: string, extension: string): string | null {
+function findNearestFile(startPath: string, extensions: string[]): string | null {
   let currentDir = startPath;
   while (currentDir !== path.parse(currentDir).root) {
     try {
       const files = fs.readdirSync(currentDir);
-      const target = files.find((f) => f.endsWith(extension));
+      const target = files.find((fileName) =>
+        extensions.some((extension) => fileName.endsWith(extension)),
+      );
       if (target) {
         return path.join(currentDir, target);
       }
@@ -66,9 +68,9 @@ async function processFileChanges(
 }
 
 export async function adjustNamespaces(folderPath: string) {
-  const slnFile = findNearestFile(folderPath, ".sln");
+  const slnFile = findNearestFile(folderPath, [".sln", ".slnx"]);
   if (!slnFile) {
-    vscode.window.showErrorMessage("No Solution (.sln) file found.");
+    vscode.window.showErrorMessage("No Solution (.sln or .slnx) file found.");
     return;
   }
   const slnRoot = path.dirname(slnFile);
